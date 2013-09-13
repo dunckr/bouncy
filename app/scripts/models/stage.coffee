@@ -16,7 +16,6 @@ class bouncy.Stage extends createjs.Stage
     @el.css 'background-color', color
 
   setup: ->
-    @autoClear = false
     @enableDOMEvents true
     createjs.Touch.enable @
     createjs.Ticker.setFPS 24

@@ -2,23 +2,26 @@ class bouncy.Ball extends createjs.Shape
 
   _.extend @::, Backbone.Events
 
-  constructor: (x,y,@speedX=0.1,@speedY=0.1,@fill='red',@size=40) ->
+  constructor: (x,y,@fill='red',@speedX=0.1,@speedY=0.1,@size=10) ->
     super
-    @fillIn()
+    @setup(x,y)
     @events()
 
-  fillIn: ->
+  setup: (x,y) ->
     @graphics
       .beginFill(@fill)
       .drawCircle(0, 0, @size)
-    @move 100, 100
+    @move x, y
 
   events: ->
     bouncy.Timer.on 'update', @update
 
   move: (x,y) ->
-    @x = x
-    @y = y
+    @x += x
+    @y += y
 
   update: =>
-    @move @x+@speedX, @y+@speedY
+    @move @speedX, @speedY
+
+    # put some bouncy shit in here 
+    # then stick into behaviour
