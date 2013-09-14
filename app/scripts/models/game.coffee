@@ -13,7 +13,7 @@ class bouncy.Game
 
   determineDimensions: ->
     # todo dynamically
-    width: 1000, height: 500
+    width: 300, height: 200
 
   # to refactor
   levelSetup: ->
@@ -24,7 +24,7 @@ class bouncy.Game
 
     # circle2 = new createjs.Shape();
     # circle2.graphics.beginFill("black").drawCircle(0, 0, 10);
-    # circle2.x = circle2.y = 100;
+    # circle2.x = circle2.y = 100;i
     # @stage.addChild circle2
     # #  probem in ball...
     # console.log 'in levelselect'
@@ -35,12 +35,29 @@ class bouncy.Game
     #   if circle2.x > @stage.canvas.width
     #     circle2.x = 0
 
-    #   
-
     # setInterval moving, 1000
 
-    @stage.addChild new bouncy.Ball 100, 100, 'blue'
-    @stage.addChild new bouncy.Ball 10, 10, 'yellow'
+    bouncy.objects = []
+    bouncy.objects.push new bouncy.Ball 100, 100, 'blue'
+    bouncy.objects.push new bouncy.Ball 10, 50, 'yellow'
+    bouncy.objects.push new bouncy.Ball 40, 30, 'green'
+    bouncy.objects.push new bouncy.Ball 20, 10, 'red'
+    bouncy.objects.push new bouncy.Ball 60, 70, 'black'
+    bouncy.objects.push new bouncy.Ball 65, 70, 'orange'
+    bouncy.objects.push new bouncy.Ball 140, 10, 'pink'
+    bouncy.objects.push new bouncy.Ball 90, 90, 'purple'
+
+
+
+    # @stage.addChild new bouncy.Ball 40, 140, 'green'
+    # @stage.addChild new bouncy.Ball 30, 50, 'red'
+    # @stage.addChild new bouncy.Ball 120, 1, 'black'
+
+    for ball in bouncy.objects
+      @stage.add ball
+
+
+    c = new bouncy.Catch()
 
     # @stage.addChild new bouncy.Text 'hello world', 100,100
 

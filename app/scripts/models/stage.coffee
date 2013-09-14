@@ -5,8 +5,7 @@ class bouncy.Stage extends createjs.Stage
     @initialize name
     @setDimensions dimensions
     # @setColor 'red'
-    @setup()
-    # @timer = new bouncy.Timer()
+    @setupEvents()
 
   setDimensions: (dimensions) ->
     @el.width(dimensions.width)
@@ -15,22 +14,33 @@ class bouncy.Stage extends createjs.Stage
   setColor: (color) ->
     @el.css 'background-color', color
 
-  setup: ->
+  setupEvents: ->
     @enableDOMEvents true
     createjs.Touch.enable @
     createjs.Ticker.setFPS 24
     createjs.Ticker.addListener @
+    @addEventListener "stagemouseup", @handleMouseUp
+    @addEventListener "stagemousedown", @handleMouseDown
+    @addEventListener "stagemousemove", @handleMouseMove
 
   add: (args...)->
     @addChild args...
 
   tick: ->
-    # @timer.update()
     bouncy.Timer.update()
     @update()
 
   update: ->
     super
+
+  handleMouseUp: (event) ->
+    bouncy.Input.mouseUp event
+
+  handleMouseDown: (event) ->
+    bouncy.Input.mouseDown event
+
+  handleMouseMove: (event) ->
+    bouncy.Input.mouseMove event
 
   # update: ->
   #   console.log 'updating'

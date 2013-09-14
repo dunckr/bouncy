@@ -2,7 +2,7 @@ class bouncy.Ball extends createjs.Shape
 
   _.extend @::, Backbone.Events
 
-  constructor: (x,y,@fill='red',@speedX=0.1,@speedY=0.1,@size=10) ->
+  constructor: (x,y,@fill='red',@speedX=1,@speedY=1,@size=10) ->
     super
     @setup(x,y)
     @events()
@@ -21,7 +21,31 @@ class bouncy.Ball extends createjs.Shape
     @y += y
 
   update: =>
+    if @x+(@size) >= 200 or @x-(@size) <= 0
+      @speedX *= -1
+
+    if @y+(@size) >= 150 or @y-(@size) <= 0
+      @speedY *= -1
+
+    for ball in bouncy.objects
+      # console.log "#{@id} , #{ball.id}"
+      if @id != ball.id
+        deltax = @x - ball.x
+        deltay = @y - ball.y
+        dist = @size
+        if (Math.abs(deltax) < dist && Math.abs(deltay) < dist)
+            if (Math.sqrt(deltax * deltax + deltay * deltay) < dist)
+                @speedX *= -1
+                @speedY *= -1
+                ball.speedX *= -1
+                ball.speedY *= -1
+
     @move @speedX, @speedY
 
-    # put some bouncy shit in here 
+
+
+    # put some bouncy shit in here
     # then stick into behaviour
+    # @speedX *= -1 if @x >= 1000 or @x <= 0
+    # @speedY *= -1 if @y >= 500 or @y <= 0
+    # console.log "#{@x},#{@y}"
