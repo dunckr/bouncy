@@ -15,7 +15,7 @@ class bouncy.Input
     @instance().mouseUp event
 
   @mouseDown: (event) ->
-    @instance().mouseDown()
+    @instance().mouseDown event
 
   @mouseMove: (event) ->
     @instance().mouseMove event
@@ -26,11 +26,11 @@ class InputImpl
 
   mouseUp: (event) ->
     # console.log 'inside inputimpl - UP'
-    @trigger 'mouseUp'
+    @trigger 'mouseUp', event
 
   mouseDown: (event) ->
     # console.log 'inside inputimpl - DOWN'
-    @trigger 'mouseDown'
+    @trigger 'mouseDown', event
 
   mouseMove: (event) ->
     # console.log 'inside inputimpl - MOVE'

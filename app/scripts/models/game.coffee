@@ -57,7 +57,7 @@ class bouncy.Game
       @stage.add ball
 
 
-    c = new bouncy.Catch()
+    @stage.add new bouncy.Catch()
 
     # @stage.addChild new bouncy.Text 'hello world', 100,100
 
