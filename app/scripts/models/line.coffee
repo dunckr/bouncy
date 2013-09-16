@@ -5,7 +5,6 @@ class bouncy.Line extends createjs.Shape
     @setup x1,y1,x2,y2,x3,y3
 
   setup: (x1,y1,x2,y2,x3,y3) ->
-    console.log 'trying to create here'
     @graphics
       .clear()
       .setStrokeStyle(5, 'round', 'round')
