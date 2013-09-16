@@ -93,6 +93,7 @@ class bouncy.Catch extends createjs.Shape
     console.log 'handling mouse move'
     event.target.addChild new bouncy.Ball event.stageX, event.stageY, @colors[Math.floor(Math.random()*@colors.length)]
 
+
     # @midPt = new createjs.Point( @oldPt.x + event.stageX>>1, @oldPt.y+event.stageY>>1);
     # @draw()
     # @oldPt.x = event.stageX
