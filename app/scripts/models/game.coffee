@@ -13,7 +13,7 @@ class bouncy.Game
 
   determineDimensions: ->
     # todo dynamically
-    width: 300, height: 200
+    width: 800, height: 400
 
   # to refactor
   levelSetup: ->
@@ -57,7 +57,7 @@ class bouncy.Game
       @stage.add ball
 
 
-    @stage.add new bouncy.Catch()
+    c = new bouncy.Catch(@stage1)
 
     # @stage.addChild new bouncy.Text 'hello world', 100,100
 

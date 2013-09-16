@@ -1,66 +1,14 @@
-class bouncy.Catch extends createjs.Shape
+class bouncy.Catch
 
   _.extend @::, Backbone.Events
 
-  constructor: ->
-    super
+  constructor: (@stage) ->
+    console.log 'inside bouncy catch'
     @events()
 
     @oldPt
     @oldMidPt
     @midPt
-
-    @colors =[
-            "aliceblue",
-            "antiquewhite",
-            "aqua",
-            "aquamarine",
-            "azure",
-            "beige",
-            "bisque",
-            "black",
-            "blanchedalmond",
-            "blue",
-            "blueviolet",
-            "brown",
-            "burlywood",
-            "cadetblue",
-            "chartreuse",
-            "chocolate",
-            "coral",
-            "cornflowerblue",
-            "cornsilk",
-            "crimson",
-            "cyan",
-            "darkblue",
-            "darkcyan",
-            "darkgoldenrod",
-            "darkgray",
-            "darkgreen",
-            "darkkhaki",
-            "darkmagenta",
-            "darkolivegreen",
-            "darkorange",
-            "darkorchid",
-            "darkred",
-            "darksalmon",
-            "darkseagreen",
-            "darkslateblue",
-            "darkslategray",
-            "darkturquoise",
-            "darkviolet",
-            "deeppink",
-            "deepskyblue",
-            "dimgray",
-            "dodgerblue",
-            "firebrick",
-            "floralwhite",
-            "forestgreen",
-            "fuchsia",
-            "gainsboro",
-            "ghostwhite",
-            "gold",
-            "goldenrod" ]
 
   events: ->
     bouncy.Input.on 'mouseUp', @mouseUp
@@ -81,21 +29,31 @@ class bouncy.Catch extends createjs.Shape
     bouncy.Input.off 'mouseMove', @mouseMove
 
   mouseDown: (event) =>
+    @oldPt = new createjs.Point event.stageX, event.stageY
+    @oldMidPt = @oldPt
+
     # @oldPt = new createjs.Point event.stageX, event.stageY
     # @oldMidPt = @oldPt
 
-
     bouncy.Input.on 'mouseMove', @mouseMove
 
-
-
   mouseMove: (event) =>
-    console.log 'handling mouse move'
-    event.target.addChild new bouncy.Ball event.stageX, event.stageY, @colors[Math.floor(Math.random()*@colors.length)]
+    # console.log event
+    # event.target.addChild new bouncy.Ball event.stageX, event.stageY, @colors[Math.floor(Math.random()*@colors.length)]
+
+    @midPt = new createjs.Point( @oldPt.x + event.stageX>>1, @oldPt.y+event.stageY>>1)
+
+    event.target.addChild new bouncy.Line @midPt.x,@midPt.y,@oldPt.x,@oldPt.y,@oldMidPt.x,@oldMidPt.y
+
+    @oldPt.x = event.stageX
+    @oldPt.y = event.stageY
+    @oldMidPt.x = @midPt.x
+    @oldMidPt.y = @midPt.y
 
 
     # @midPt = new createjs.Point( @oldPt.x + event.stageX>>1, @oldPt.y+event.stageY>>1);
     # @draw()
+    # event.target.addChild new bouncy.Line event.stageX, event.stageY
     # @oldPt.x = event.stageX
     # @oldPt.y = event.stageY
     # @oldMidPt.x = @midPt.x
