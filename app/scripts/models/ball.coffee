@@ -4,7 +4,7 @@ class bouncy.Ball extends createjs.Shape
 
   constructor: (x,y,@fill='red',@speedX=1,@speedY=1,@size=10) ->
     super
-    @setup(x,y)
+    @setup x,y
     @events()
 
   setup: (x,y) ->
@@ -28,7 +28,6 @@ class bouncy.Ball extends createjs.Shape
       @speedY *= -1
 
     for ball in bouncy.objects
-      # console.log "#{@id} , #{ball.id}"
       if @id != ball.id
         deltax = @x - ball.x
         deltay = @y - ball.y
@@ -41,11 +40,3 @@ class bouncy.Ball extends createjs.Shape
                 ball.speedY *= -1
 
     @move @speedX, @speedY
-
-
-
-    # put some bouncy shit in here
-    # then stick into behaviour
-    # @speedX *= -1 if @x >= 1000 or @x <= 0
-    # @speedY *= -1 if @y >= 500 or @y <= 0
-    # console.log "#{@x},#{@y}"

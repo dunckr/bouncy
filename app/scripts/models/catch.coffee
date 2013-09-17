@@ -22,8 +22,8 @@ class bouncy.Catch
   mouseUp: (event) =>
     @end = new createjs.Point event.stageX, event.stageY
 
-    diffX = @start.x - @end.x
-    diffY = @start.y - @end.y
+    diffX = @start.x - 0
+    diffY = @start.y - 0
 
     if diffX < 0.2 and diffY < 0.2
       console.log 'CIRCLE OF LIFE!!!'
