@@ -39,13 +39,13 @@ class bouncy.Game
 
     bouncy.objects = []
     bouncy.objects.push new bouncy.Ball 40, 50, 'blue', 0.5, 0.5
-    # bouncy.objects.push new bouncy.Ball 10, 50, 'yellow'
-    # bouncy.objects.push new bouncy.Ball 40, 30, 'green'
-    # bouncy.objects.push new bouncy.Ball 20, 10, 'red'
-    # bouncy.objects.push new bouncy.Ball 60, 70, 'black'
-    # bouncy.objects.push new bouncy.Ball 65, 70, 'orange'
-    # bouncy.objects.push new bouncy.Ball 140, 10, 'pink'
-    # bouncy.objects.push new bouncy.Ball 90, 90, 'purple'
+    bouncy.objects.push new bouncy.Ball 10, 50, 'yellow'
+    bouncy.objects.push new bouncy.Ball 40, 30, 'green'
+    bouncy.objects.push new bouncy.Ball 20, 10, 'red'
+    bouncy.objects.push new bouncy.Ball 60, 70, 'black'
+    bouncy.objects.push new bouncy.Ball 65, 70, 'orange'
+    bouncy.objects.push new bouncy.Ball 140, 10, 'pink'
+    bouncy.objects.push new bouncy.Ball 90, 90, 'purple'
 
 
 
