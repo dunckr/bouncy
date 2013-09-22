@@ -1,7 +1,6 @@
 describe 'Timer', ->
 
-  it 'should be defined', ->
-
-  it 'should be able to be trigger', ->
-
-  it 'should be update able', ->
+  it 'should update', ->
+    spyOn(bouncy.Timer, 'update')
+    bouncy.Timer.update()
+    expect(bouncy.Timer.update).toHaveBeenCalled()

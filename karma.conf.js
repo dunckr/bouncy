@@ -19,6 +19,7 @@ files = [
   'app/scripts/models/game.coffee',
   'app/scripts/models/shape.coffee',
   'app/scripts/models/ball.coffee',
+  'app/scripts/models/levelSelect.coffee',
   'app/scripts/*.coffee',
   'app/scripts/**/*.coffee',
   'test/spec/**/*.coffee'

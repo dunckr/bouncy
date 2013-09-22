@@ -6,8 +6,10 @@ describe 'Game', ->
   it 'should have stage', ->
     expect(@game.stage).toBeDefined()
 
-  it 'should have level number', ->
-    expect(@game.levelNumber).toBe 0
+  it 'should have an name', ->
+    expect(@game.name).toEqual 'game'
 
-  it 'should calculate the size of the stage', ->
-    expect(@game.determineDimensions()).toEqual width: 500, height: 300
+  it 'should calculate stage dimensions', ->
+    d = @game.determineDimensions()
+    expect(d.width).toEqual 400
+    expect(d.height).toEqual 300

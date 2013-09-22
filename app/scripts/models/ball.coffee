@@ -27,16 +27,16 @@ class bouncy.Ball extends createjs.Shape
     if @y+(@size) >= 150 or @y-(@size) <= 0
       @speedY *= -1
 
-    for ball in bouncy.objects
-      if @id != ball.id
-        deltax = @x - ball.x
-        deltay = @y - ball.y
-        dist = @size
-        if (Math.abs(deltax) < dist && Math.abs(deltay) < dist)
-            if (Math.sqrt(deltax * deltax + deltay * deltay) < dist)
-                @speedX *= -1
-                @speedY *= -1
-                ball.speedX *= -1
-                ball.speedY *= -1
+    # for ball in bouncy.objects
+    #   if @id != ball.id
+    #     deltax = @x - ball.x
+    #     deltay = @y - ball.y
+    #     dist = @size # needs to use ball.size
+    #     if (Math.abs(deltax) < dist && Math.abs(deltay) < dist)
+    #         if (Math.sqrt(deltax * deltax + deltay * deltay) < dist)
+    #             @speedX *= -1
+    #             @speedY *= -1
+    #             ball.speedX *= -1
+    #             ball.speedY *= -1
 
     @move @speedX, @speedY

@@ -1,15 +1,18 @@
 class bouncy.Stage extends createjs.Stage
 
-  constructor: (name, dimensions) ->
-    @el = $ "##{name}"
-    @initialize name
-    @setDimensions dimensions
-    # @setColor 'red'
+  constructor: (@name, @dimensions) ->
+    @el = $ "##{@name}"
+    @setup()
+
+  setup: ->
+    @initialize @name
+    @setDimensions @dimensions
+    @setColor '#F7DFC7'
     @setupEvents()
+    @levelSelect = new bouncy.LevelSelect @, 5, @dimensions
 
   setDimensions: (dimensions) ->
-    @el.width(dimensions.width)
-      .height(dimensions.height)
+    @el.width(dimensions.width).height(dimensions.height)
 
   setColor: (color) ->
     @el.css 'background-color', color
@@ -30,9 +33,6 @@ class bouncy.Stage extends createjs.Stage
     bouncy.Timer.update()
     @update()
 
-  update: ->
-    super
-
   handleMouseUp: (event) ->
     bouncy.Input.mouseUp event
 
@@ -41,39 +41,3 @@ class bouncy.Stage extends createjs.Stage
 
   handleMouseMove: (event) ->
     bouncy.Input.mouseMove event
-
-  # update: ->
-  #   console.log 'updating'
-  #   super()
-
-  # constructor: (name, dimensions) ->
-  #   @el = $ "##{name}"
-  #   # @setDimensions dimensions
-  #   # @setColor 'black'
-  #   super name
-  #   @apply @
-  #   @setup()
-
-  # setDimensions: (dimensions) ->
-  #   @el.width(dimensions.width)
-  #     .height(dimensions.height)
-
-  # setColor: (color) ->
-  #   @el.css 'background-color', color
-
-  # setup: ->
-  #   @autoClear = false
-  #   @enableDOMEvents true
-  #   createjs.Touch.enable @
-  #   createjs.Ticker.setFPS 24
-  #   createjs.Ticker.addListener @
-
-  # add: (args...)->
-  #   @addChild args...
-
-  # tick: ->
-  #   @update()
-
-  # update: ->
-  #   console.log 'updating'
-  #   super()
