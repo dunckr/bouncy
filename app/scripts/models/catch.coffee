@@ -43,13 +43,17 @@ class bouncy.Catch
     if diffX < 0.2 and diffY < 0.2
       console.log 'CIRCLE OF LIFE'
 
+
+      # console.log @stage.balls
+
+      # pts = @stage.balls.getPts()
+
       # for ball in bouncy.objects
       #   for pt in @pts
       #     if (pt.y1 < ball.y and pt.y2 > ball.y) or (pt.y1 > ball.y and pt.y2 < ball.y) and
       #       (ball.x < (pt.y2 - pt.x1) * (ball.y - pt.y1) / (pt.y2 - pt.y1) + pt.x1)
       #         @stage.removeChild ball
       #         console.log @stage.getNumChildren()
-
 
     for pt in @pts
       @stage.removeChild pt

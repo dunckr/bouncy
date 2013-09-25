@@ -16,16 +16,41 @@ class bouncy.Ball extends createjs.Shape
   events: ->
     bouncy.Timer.on 'update', @update
 
+  getDimensions: ->
+    x: @x
+    y: @y
+
   move: (x,y) ->
     @x += x
     @y += y
 
-  update: =>
-    if @x+(@size) >= 200 or @x-(@size) <= 0
-      @speedX *= -1
+  reverse: ->
+    @speedX *= -1
+    @speedY *= -1
 
-    if @y+(@size) >= 150 or @y-(@size) <= 0
-      @speedY *= -1
+  contains: (ball) ->
+    deltax = @x - ball.x
+    deltay = @y - ball.y
+    if Math.abs(deltax) < @size and Math.abs(deltay) < @size
+        return true if Math.sqrt(Math.pow(deltax,2) + Math.pow(deltay,2)) < @size
+    false
+
+  boundaryCheck: ->
+    height = bouncy.Stage.dimensions.height
+    width = bouncy.Stage.dimensions.width
+
+    if @x+@size >= width or @x-@size <= 0
+      console.log 'hitting width'
+      @reverse()
+    @reverse() if @y+@size >= height or @y-@size <= 0
+
+  update: =>
+    @boundaryCheck()
+    # if @x+(@size) >= 200 or @x-(@size) <= 0
+    #   @speedX *= -1
+
+    # if @y+(@size) >= 150 or @y-(@size) <= 0
+    #   @speedY *= -1
 
     # for ball in bouncy.objects
     #   if @id != ball.id

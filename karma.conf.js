@@ -17,7 +17,6 @@ files = [
   'app/scripts/models/timer.coffee',
   'app/scripts/models/stage.coffee',
   'app/scripts/models/game.coffee',
-  'app/scripts/models/shape.coffee',
   'app/scripts/models/ball.coffee',
   'app/scripts/models/levelSelect.coffee',
   'app/scripts/*.coffee',

@@ -2,13 +2,13 @@ class bouncy.Stage extends createjs.Stage
 
   constructor: (@name, @dimensions) ->
     @el = $ "##{@name}"
-    @setup()
+    @init()
 
-  setup: ->
+  init: ->
     @initialize @name
     @setDimensions @dimensions
     @setColor '#F7DFC7'
-    @setupEvents()
+    @setup()
     @levelSelect = new bouncy.LevelSelect @, 5, @dimensions
 
   setDimensions: (dimensions) ->
@@ -17,7 +17,7 @@ class bouncy.Stage extends createjs.Stage
   setColor: (color) ->
     @el.css 'background-color', color
 
-  setupEvents: ->
+  setup: ->
     @enableDOMEvents true
     createjs.Touch.enable @
     createjs.Ticker.setFPS 24
@@ -25,9 +25,12 @@ class bouncy.Stage extends createjs.Stage
     @addEventListener "stagemouseup", @handleMouseUp
     @addEventListener "stagemousedown", @handleMouseDown
     @addEventListener "stagemousemove", @handleMouseMove
+    @balls = new bouncy.Balls()
 
-  add: (args...)->
-    @addChild args...
+  add: (item) ->
+    if item instanceof bouncy.Ball
+      @balls.add item
+    @addChild item
 
   tick: ->
     bouncy.Timer.update()

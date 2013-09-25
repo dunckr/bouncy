@@ -25,13 +25,10 @@ class InputImpl
   _.extend @::, Backbone.Events
 
   mouseUp: (event) ->
-    # console.log 'inside inputimpl - UP'
     @trigger 'mouseUp', event
 
   mouseDown: (event) ->
-    # console.log 'inside inputimpl - DOWN'
     @trigger 'mouseDown', event
 
   mouseMove: (event) ->
-    # console.log 'inside inputimpl - MOVE'
     @trigger 'mouseMove', event
