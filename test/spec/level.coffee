@@ -13,7 +13,7 @@ describe 'Level', ->
     expect(@level.speed()).toBeLessThan 1
     expect(@level.speed()).toBeGreaterThan -1
 
-  iit 'should calculate random position', ->
+  it 'should calculate random position', ->
     expect(@level.position('height')).toBeLessThan 500
     expect(@level.position('height')).toBeGreaterThan 0
 

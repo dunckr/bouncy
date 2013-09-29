@@ -31,5 +31,12 @@ describe 'Balls', ->
       line = new bouncy.Line 250, 250, 300, 300
       expect(@balls.containsLine(line)).toBeFalsy()
 
-    it 'should check if balls are overlapping', ->
-      # @balls.congestion()
+    it 'should determine if two balls are not overlapping', ->
+      n = new bouncy.Ball 0, 0
+      m = new bouncy.Ball 100, 100
+      expect(@balls.overlapping(n,m)).toBeFalsy()
+
+    it 'should determine if two balls are overlapping', ->
+      n = new bouncy.Ball 0, 0
+      m = new bouncy.Ball 12, 12
+      expect(@balls.overlapping(n,m)).toBeTruthy()

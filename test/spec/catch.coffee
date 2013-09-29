@@ -7,7 +7,7 @@ describe 'Catch', ->
 
 
   it 'should determine if start and end are near', ->
-    
+
 
 
   describe 'if line is on ball', ->
