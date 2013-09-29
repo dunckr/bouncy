@@ -7,7 +7,7 @@ class bouncy.LevelSelect
     # TODO...
 
   generateLevel: ->
-    @level = new bouncy.Level @number, @stage.dimensions
+    @level = new bouncy.Level @number
     c = new bouncy.Catch @stage # check if defined
     for object in @level.objects
       @stage.add object

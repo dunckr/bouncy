@@ -1,18 +1,18 @@
 class bouncy.Stage extends createjs.Stage
 
-  constructor: (@name, @dimensions) ->
+  constructor: (@name) ->
     @el = $ "##{@name}"
     @init()
 
   init: ->
     @initialize @name
-    @setDimensions @dimensions
+    @setDimensions()
     @setColor '#F7DFC7'
     @setup()
-    @levelSelect = new bouncy.LevelSelect @, 5, @dimensions
+    @levelSelect = new bouncy.LevelSelect @, 5
 
-  setDimensions: (dimensions) ->
-    @el.width(dimensions.width).height(dimensions.height)
+  setDimensions: ->
+    @el.width(bouncy.Config.width()).height(bouncy.Config.height())
 
   setColor: (color) ->
     @el.css 'background-color', color

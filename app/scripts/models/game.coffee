@@ -4,7 +4,8 @@ class bouncy.Game
     @init()
 
   init: ->
-    @stage = new bouncy.Stage @name, @determineDimensions()
+    bouncy.Config.setDimensions @determineDimensions()
+    @stage = new bouncy.Stage @name
 
   determineDimensions: ->
     width: innerWidth, height: innerHeight

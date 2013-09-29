@@ -36,21 +36,13 @@ class bouncy.Ball extends createjs.Shape
     false
 
   boundaryCheck: ->
-    height = bouncy.Stage.dimensions.height
-    width = bouncy.Stage.dimensions.width
-
-    if @x+@size >= width or @x-@size <= 0
-      console.log 'hitting width'
+    height = bouncy.Config.height()
+    width = bouncy.Config.width()
+    if @x+@size >= width or @x-@size <= 0 or @y+@size >= height or @y-@size <= 0
       @reverse()
-    @reverse() if @y+@size >= height or @y-@size <= 0
 
   update: =>
     @boundaryCheck()
-    # if @x+(@size) >= 200 or @x-(@size) <= 0
-    #   @speedX *= -1
-
-    # if @y+(@size) >= 150 or @y-(@size) <= 0
-    #   @speedY *= -1
 
     # for ball in bouncy.objects
     #   if @id != ball.id
