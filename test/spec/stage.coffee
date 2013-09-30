@@ -3,8 +3,7 @@ describe 'Stage', ->
   beforeEach ->
     name = 'game'
     @html = "<canvas id='#{name}' width=500 height=300></canvas>"
-    @dimensions = width: 500, height: 300
-    @stage = new bouncy.Stage name, @dimensions
+    @stage = new bouncy.Stage name
     @stage.el = $ @html
 
   it 'should have id', ->

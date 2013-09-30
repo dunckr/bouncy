@@ -4,11 +4,25 @@ class bouncy.Catch
 
   constructor: (@stage) ->
     @events()
-    @pts = []
+    @lines = []
 
-    @midPt
-    @oldMidPt
-    @oldPt
+  isCircular: (start,end) ->
+    diffX = start.x1 - end.x2
+    diffY = start.y1 - end.y2
+    if ~diffX < 0.1 and ~diffY < 0.1
+      return true
+    false
+
+  isTouching: ->
+    for line in @lines
+      console.log @stage.balls.length
+      for ball in @stage.balls
+        console.log 'he'
+        # console.log @stage.balls.test()
+      # if @stage.balls.containsLine line
+
+        # return true
+    false
 
   events: ->
     bouncy.Input.on 'mouseUp', @mouseUp
@@ -17,53 +31,36 @@ class bouncy.Catch
 
   mouseDown: (event) =>
     bouncy.Input.on 'mouseMove', @mouseMove
-
-    @start = @oldPt = new createjs.Point event.stageX, event.stageY
-    @oldMidPt = @oldPt
+    @lines.push new bouncy.Line event.stageX, event.stageY, event.stageX, event.stageY
 
   mouseMove: (event) =>
-    @midPt = new createjs.Point( @oldPt.x + event.stageX>>1, @oldPt.y+event.stageY>>1)
-    l = new bouncy.Line @midPt.x,@midPt.y,@oldMidPt.x,@oldMidPt.y
-    @stage.add l
-    @pts.push l
-
-    @oldPt.x = event.stageX
-    @oldPt.y = event.stageY
-    @oldMidPt.x = @midPt.x
-    @oldMidPt.y = @midPt.y
+    prev = @lines[@lines.length-1]
+    mid = new createjs.Point prev.x1 + event.stageX >> 1, prev.y1 - event.stageY >> 1
+    curr = new bouncy.Line prev.x2, prev.y2, event.stageX, event.stageY
+    @lines.push curr
+    @stage.add curr
 
   mouseUp: (event) =>
     bouncy.Input.off 'mouseMove', @mouseMove
-
-    @end = new createjs.Point event.stageX, event.stageY
-
-    diffX = @start.x - @end.x
-    diffY = @start.y - @end.y
-
-    if diffX < 0.2 and diffY < 0.2
-      console.log 'CIRCLE OF LIFE'
+    start = @lines[0]
+    end = new createjs.Point event.stageX, event.stageY
+    # if @isCircular start, end
 
 
-      # console.log @stage.balls
+    #   # pts = @stage.balls.getPts()
 
-      # pts = @stage.balls.getPts()
+    #   # for ball in bouncy.objects
+    #   #   for pt in @pts
+    #   #     if (pt.y1 < ball.y and pt.y2 > ball.y) or (pt.y1 > ball.y and pt.y2 < ball.y) and
+    #   #       (ball.x < (pt.y2 - pt.x1) * (ball.y - pt.y1) / (pt.y2 - pt.y1) + pt.x1)
+    #   #         @stage.removeChild ball
+    #   #         console.log @stage.getNumChildren()
 
-      # for ball in bouncy.objects
-      #   for pt in @pts
-      #     if (pt.y1 < ball.y and pt.y2 > ball.y) or (pt.y1 > ball.y and pt.y2 < ball.y) and
-      #       (ball.x < (pt.y2 - pt.x1) * (ball.y - pt.y1) / (pt.y2 - pt.y1) + pt.x1)
-      #         @stage.removeChild ball
-      #         console.log @stage.getNumChildren()
-
-    for pt in @pts
-      @stage.removeChild pt
-    @pts = []
+    # for pt in @pts
+    #   @stage.removeChild pt
+    # @pts = []
 
   update: =>
-    # if @pts?
-      # for ball in bouncy.objects
-      #   for pt in @pts
-      #     if pt.hitTest ball.x, ball.y
-      #       for pt in @pts
-      #         @stage.removeChild pt
-      #         @pts = []
+    if @isTouching()
+      @stage.removeChild line for line in @lines
+      @line = []
