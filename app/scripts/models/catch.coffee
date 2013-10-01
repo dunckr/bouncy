@@ -5,23 +5,21 @@ class bouncy.Catch
   constructor: (@stage) ->
     @events()
     @lines = []
+    @proximity = 0.2
 
   isCircular: (start,end) ->
-    diffX = start.x1 - end.x2
-    diffY = start.y1 - end.y2
-    if ~diffX < 0.1 and ~diffY < 0.1
+    console.log start
+    console.log end
+    diffX = start.x1 - end.x
+    diffY = start.y1 - end.y
+    if ~diffX < @proximity and ~diffY < @proximity
       return true
     false
 
   isTouching: ->
     for line in @lines
-      console.log @stage.balls.length
-      for ball in @stage.balls
-        console.log 'he'
-        # console.log @stage.balls.test()
-      # if @stage.balls.containsLine line
-
-        # return true
+      if @stage.balls.containsLine line
+        return true
     false
 
   events: ->
@@ -44,8 +42,12 @@ class bouncy.Catch
     bouncy.Input.off 'mouseMove', @mouseMove
     start = @lines[0]
     end = new createjs.Point event.stageX, event.stageY
-    # if @isCircular start, end
+    if @isCircular start, end
+      # check if inside
+      # console.log start.x1 + ' ' + end.x
+      # console.log start.y1 + ' ' + end.y
 
+      console.log 'complete'
 
     #   # pts = @stage.balls.getPts()
 
@@ -56,11 +58,15 @@ class bouncy.Catch
     #   #         @stage.removeChild ball
     #   #         console.log @stage.getNumChildren()
 
-    # for pt in @pts
-    #   @stage.removeChild pt
-    # @pts = []
+    @reset()
 
   update: =>
     if @isTouching()
-      @stage.removeChild line for line in @lines
-      @line = []
+      @reset()
+
+  reset: ->
+    for line in @lines
+      @stage.removeChild line
+    @lines = []
+    # @stage.removeChild line for line in @lines
+    # @lines = []

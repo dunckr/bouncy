@@ -14,14 +14,15 @@ files = [
   'app/bower_components/backbone/backbone.js',
   // TODO requirejs
   'app/scripts/main.coffee',
+  'app/scripts/models/stage.coffee',
+  'app/scripts/collections/balls.coffee',
+  'app/scripts/models/catch.coffee',
   'app/scripts/models/timer.coffee',
   'app/scripts/config/config.coffee',
   'app/scripts/models/game.coffee',
   'app/scripts/models/line.coffee',
   'app/scripts/models/ball.coffee',
   'app/scripts/collections/levelSelect.coffee',
-  'app/scripts/collections/balls.coffee',
-  'app/scripts/models/stage.coffee',
   'app/scripts/*.coffee',
   'app/scripts/**/*.coffee',
   'test/spec/**/*.coffee'

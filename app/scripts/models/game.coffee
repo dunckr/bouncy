@@ -8,4 +8,5 @@ class bouncy.Game
     @stage = new bouncy.Stage @name
 
   determineDimensions: ->
-    width: innerWidth, height: innerHeight
+    width: 500, height: 300
+    # width: innerWidth, height: innerHeight
