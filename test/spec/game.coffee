@@ -11,5 +11,5 @@ describe 'Game', ->
 
   it 'should calculate stage dimensions', ->
     d = @game.determineDimensions()
-    expect(d.width).toEqual 400
+    expect(d.width).toEqual 500
     expect(d.height).toEqual 300

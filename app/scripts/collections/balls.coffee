@@ -15,7 +15,7 @@ class bouncy.Balls
   length: ->
     @balls.length
 
-  containsLine: (line) ->
+  cross: (line) ->
     for ball in @getPts()
       if line.containsPoint ball
         return true
